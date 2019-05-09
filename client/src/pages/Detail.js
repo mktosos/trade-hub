@@ -23,7 +23,7 @@ class Detail extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                {this.state.book.title} by {this.state.book.author}
+                {this.state.book.title} price $ {this.state.book.price}
               </h1>
             </Jumbotron>
           </Col>
@@ -31,21 +31,22 @@ class Detail extends Component {
         <Row>
           <Col size="md-10 md-offset-1">
             <article>
-              <h1>Synopsis</h1>
+              <h3>Description</h3>
               <p>
-                {this.state.book.synopsis}
+                {this.state.book.description}
               </p>
             </article>
           </Col>
         </Row>
         <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
+          <Col size="md-4">
+            <Link to="/">← Back to Inventory</Link>
           </Col>
         </Row>
       </Container>
     );
   }
 }
+console.log("k")
 
 export default Detail;

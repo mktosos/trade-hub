@@ -11,8 +11,8 @@ class Books extends Component {
   state = {
     items: [],
     title: "",
-    author: "",
-    synopsis: ""
+    price: "",
+    description: ""
   };
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ items: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ items: res.data, title: "", price: "", description: "" })
       )
       .catch(err => console.log(err));
   };
@@ -42,11 +42,11 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (this.state.title && this.state.price) {
       API.saveBook({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        price: this.state.price,
+        description: this.state.description
       })
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
@@ -69,19 +69,19 @@ class Books extends Component {
                 placeholder="Title (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.price}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="price"
+                placeholder="Price (required)"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.description}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="description"
+                placeholder="description (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.price && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
                 Add Item
@@ -98,7 +98,7 @@ class Books extends Component {
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title} for {book.author}
+                        {book.title} ${book.price}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
