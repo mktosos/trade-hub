@@ -9,7 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 
 class Books extends Component {
   state = {
-    books: [],
+    items: [],
     title: "",
     author: "",
     synopsis: ""
@@ -22,7 +22,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ items: res.data, title: "", author: "", synopsis: "" })
       )
       .catch(err => console.log(err));
   };
@@ -59,7 +59,7 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>Add To Inventory</h1>
             </Jumbotron>
             <form>
               <Input
@@ -84,7 +84,7 @@ class Books extends Component {
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Add Item
               </FormBtn>
             </form>
           </Col>
@@ -92,9 +92,9 @@ class Books extends Component {
             <Jumbotron>
               <h1>Items In Inventory</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.items.length ? (
               <List>
-                {this.state.books.map(book => (
+                {this.state.items.map(book => (
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
