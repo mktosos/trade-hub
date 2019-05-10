@@ -23,7 +23,7 @@ class Detail extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                {this.state.book.title} price $ {this.state.book.price}
+                {this.state.book.title} ${this.state.book.price} {this.state.book.category} {this.state.book.subcategory} {this.state.book.condition}
               </h1>
             </Jumbotron>
           </Col>

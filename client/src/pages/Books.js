@@ -11,7 +11,12 @@ class Books extends Component {
   state = {
     items: [],
     title: "",
+    category: "",
+    subcategory: "",
     price: "",
+    condition: "",
+    seller: "",
+    buyer: "",
     description: ""
   };
 
@@ -22,7 +27,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ items: res.data, title: "", price: "", description: "" })
+        this.setState({ items: res.data, title: "", price: "", condition: "", seller: "", buyer: "", description: "" })
       )
       .catch(err => console.log(err));
   };
@@ -45,7 +50,12 @@ class Books extends Component {
     if (this.state.title && this.state.price) {
       API.saveBook({
         title: this.state.title,
+        category: this.state.category,
+        subcategory: this.state.subcategory,
         price: this.state.price,
+        condition: this.state.condition,
+        seller: this.state.seller,
+        buyer: this.state.buyer,
         description: this.state.description
       })
         .then(res => this.loadBooks())
@@ -67,6 +77,24 @@ class Books extends Component {
                 onChange={this.handleInputChange}
                 name="title"
                 placeholder="Title (required)"
+              />
+              <Input
+                value={this.state.condition}
+                onChange={this.handleInputChange}
+                name="condition"
+                placeholder="condition (required)"
+              />
+              <Input
+                value={this.state.category}
+                onChange={this.handleInputChange}
+                name="category"
+                placeholder="category (required)"
+              />
+              <Input
+                value={this.state.subcategory}
+                onChange={this.handleInputChange}
+                name="subcategory"
+                placeholder="subcategory (required)"
               />
               <Input
                 value={this.state.price}
