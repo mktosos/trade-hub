@@ -10,8 +10,11 @@ const bookSchema = new Schema({
   description: String,
   condition: String,
   date: { type: Date, default: Date.now },
-  seller: { type: String, required: false},
-  buyer: String
+  seller: { type: String, required: false },
+  buyer: String,
+  upc: Number,
+  initTransaction : {type : Boolean, default: false},
+  active: { type: Boolean, default: true }
 });
 
 const Book = mongoose.model("Book", bookSchema);

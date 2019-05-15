@@ -47,6 +47,6 @@ class Detail extends Component {
     );
   }
 }
-console.log("k")
+
 
 export default Detail;

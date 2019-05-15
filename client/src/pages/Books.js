@@ -17,7 +17,11 @@ class Books extends Component {
     condition: "",
     seller: "",
     buyer: "",
-    description: ""
+    description: "",
+    active: "",
+    date: "",
+    upc: "",
+    initTransaction: ""
   };
 
   componentDidMount() {
@@ -27,7 +31,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ items: res.data, title: "", price: "", condition: "", seller: "", buyer: "", description: "" })
+        this.setState({ items: res.data, title: "", category: "", subcategory: "", price: "", condition: "", seller: "", buyer: "", description: ""})
       )
       .catch(err => console.log(err));
   };
@@ -126,8 +130,9 @@ class Books extends Component {
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title} ${book.price}
+                        {book.title} ${book.price} {book.condition} {book.category} {book.subcategory}
                       </strong>
+                      <pre>{JSON.stringify(book, null, 2)}</pre>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
