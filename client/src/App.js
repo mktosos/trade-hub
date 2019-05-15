@@ -4,8 +4,8 @@ import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import Login from "./components/container/Login";
-
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -14,8 +14,9 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={Books} />
-          <Route path="/login" exact component={Login} />
-          <Route exact path="/books" component={Books} />
+          <Route exact path="/signup"  component={Signup} />
+          <Route exact path="/login"  component={Login} />
+          <Route exact path="/user" component={Books} />
           <Route exact path="/books/:id" component={Detail} />
           <Route component={NoMatch} />
         </Switch>

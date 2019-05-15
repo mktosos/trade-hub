@@ -6,15 +6,8 @@ function Nav() {
       <a className="navbar-brand" href="/">
         Trade Hub
       </a>
-      
-      <button>
-      
-        login / sign up
-      </button>
     </nav>
   );
 }
 
 export default Nav;
-
-

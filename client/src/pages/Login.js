@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import "../components/container/Login.css";
 
 import API from '../utils/API';
 // // import { Link } from 'react-router-dom';
@@ -30,26 +32,36 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Login</h1>
-        <input
-          type="text"
-          value={this.state.email}
-          label="email"
-          onChange={this.onChange('email')}
-        />
-        <input
-          type="password"
-          value={this.state.password}
-          label="password"
-          onChange={this.onChange('password')}
-        />
-        <button
-          onClick={this.onSubmit}
-          disabled={!Boolean(this.state.email && this.state.password)}
-        >
-          Login
-        </button>
+      <div className="Login">
+      
+        <form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="email" size="large">
+            <FormLabel>Email</FormLabel>
+            <FormControl
+              autoFocus
+              type="email"
+              value={this.state.email}
+              onChange={this.onChange('email')}
+            />
+          </FormGroup>
+          <FormGroup controlId="password" size="large">
+            <FormLabel>Password</FormLabel>
+            <FormControl
+              value={this.state.password}
+              onChange={this.onChange('password')}
+              type="password"
+            />
+          </FormGroup>
+          <Button
+            onClick={this.onSubmit}
+            disabled={!Boolean(this.state.email && this.state.password)}
+            block
+            size="large"
+            type="submit"
+          >
+            Login
+          </Button>
+        </form>
       </div>
     );
   }

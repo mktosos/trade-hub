@@ -14,7 +14,8 @@ const bookSchema = new Schema({
   buyer: String,
   upc: Number,
   initTransaction : {type : Boolean, default: false},
-  active: { type: Boolean, default: true }
+  active: { type: Boolean, default: true },
+  groups: []
 });
 
 const Book = mongoose.model("Book", bookSchema);
