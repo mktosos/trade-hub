@@ -18,7 +18,7 @@ export default {
     return axios.post("/api/books", bookData);
   },  
     // Gets all users
-  getUser: function() {
+  getUsers: function() {
     return axios.get("/api/users");
   },
   // Gets the book with the given id

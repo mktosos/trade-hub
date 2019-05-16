@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import "../components/container/Login";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "../components/container/Login.css";
 import API from '../utils/API';
-// // import { Link } from 'react-router-dom';
-// import RandomHomeComponent from '../components/RandomHomeComponent';
+// import { Redirect } from 'react-router-dom';
 
-class Login extends Component {
+class Signup extends Component {
   state = {
     email: '',
     password: '',
@@ -22,7 +21,7 @@ class Login extends Component {
   }
 
   onSubmit = () => {
-    API.login(this.state)
+    API.signup(this.state)
       .then(res => localStorage.setItem('current_user_token', res.data.token))
       .catch(err => console.log(err));
   };
@@ -31,8 +30,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
-      
+      <div>
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" size="large">
             <FormLabel>Email</FormLabel>
@@ -52,13 +50,13 @@ class Login extends Component {
             />
           </FormGroup>
           <Button
-            onClick={this.onSubmit}
-            disabled={!Boolean(this.state.email && this.state.password)}
             block
             size="large"
             type="submit"
+            onClick={this.onSubmit}
+          disabled={!this.state.email || !this.state.password}
           >
-            Login
+            Signup
           </Button>
         </form>
       </div>
@@ -66,4 +64,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;

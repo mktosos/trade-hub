@@ -1,55 +1,91 @@
-import React, { Component } from 'react';
-
-import API from '../utils/API';
-// import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import Jumbotron from "../components/Jumbotron";
+import API from "../utils/API";
+import { Link } from "react-router-dom";
+import { Col, Row, Container } from "../components/Grid";
+import { Input, FormBtn } from "../components/Form";
 
 class Signup extends Component {
   state = {
-    email: '',
-    password: '',
+    active: true,
+    userName: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    address: {},
+    offers: [],
+    inTransaction: [],
+    dhistory: [],
+    feedback: [],
+    groupsAllowedIn: []
   };
 
-  componentDidMount() {
-    const token = localStorage.getItem('current_user_token');
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
-    if (token) {
-      API.validateToken(token)
-        .then(() => this.props.history.push('/'))
-        .catch(() => localStorage.removeItem('current_user_token'));
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.userName && this.state.password) {
+      API.saveUser({
+        userName: this.state.userName,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        password: this.state.password
+      })
+        
+        .catch(err => console.log(err));
     }
-  }
-
-  onSubmit = () => {
-    API.signup(this.state)
-      .then(res => localStorage.setItem('current_user_token', res.data.token))
-      .catch(err => console.log(err));
   };
-
-  onChange = key => e => this.setState({ [key]: e.target.value });
 
   render() {
     return (
-      <div>
-        <h1>Sign up</h1>
-        <input
-          type="text"
-          value={this.state.email}
-          label="email"
-          onChange={this.onChange('email')}
-        />
-        <input
-          type="password"
-          value={this.state.password}
-          label="password"
-          onChange={this.onChange('password')}
-        />
-        <button
-          onClick={this.onSubmit}
-          disabled={!this.state.email || !this.state.password}
-        >
-          signup
-        </button>
-      </div>
+      <Container fluid>
+        <Row>
+          <Col size="md-6">
+            <Jumbotron>
+              <h1>Create an Account</h1>
+            </Jumbotron>
+            <form>
+              <Input
+                value={this.state.userName}
+                onChange={this.handleInputChange}
+                name="userName"
+                placeholder="userName (required)"
+              />
+              <Input
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
+                placeholder="password(required)"
+              />
+              <Input
+                value={this.state.firstName}
+                onChange={this.handleInputChange}
+                name="firstName"
+                placeholder="firstName (required)"
+              />
+              <Input
+                value={this.state.lastName}
+                onChange={this.handleInputChange}
+                name="lastName"
+                placeholder="lastName (required)"
+              />
+              
+              <FormBtn
+                disabled={!(this.state.password && this.state.userName)}
+                onClick={this.handleFormSubmit}
+              >
+                Sign Up
+              </FormBtn>
+            </form>
+          </Col>
+          
+        </Row>
+      </Container>
     );
   }
 }
