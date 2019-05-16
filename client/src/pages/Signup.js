@@ -33,11 +33,13 @@ class Signup extends Component {
       API.saveUser({
         userName: this.state.userName,
         firstName: this.state.firstName,
+        emails: this.state.email,
         lastName: this.state.lastName,
         password: this.state.password
+
       })
-        
-        .catch(err => console.log(err));
+      let path = `/login`;
+      this.props.history.push(path);
     }
   };
 
@@ -73,6 +75,12 @@ class Signup extends Component {
                 onChange={this.handleInputChange}
                 name="lastName"
                 placeholder="lastName (required)"
+              />
+              <Input
+                value={this.state.email}
+                onChange={this.handleInputChange}
+                name="email"
+                placeholder="email (required)"
               />
               
               <FormBtn
