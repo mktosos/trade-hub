@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Album from "./pages/Album";
 import ParallaxPage from "./pages/Parallax";
+import UserDetail from "./pages/UserDetail";
 
 
 
@@ -22,8 +23,10 @@ function App() {
           <Route exact path="/signup"  component={Signup} />
           <Route exact path="/login"  component={Login} />
           <Route exact path="/user" component={Books} />
+          <Route exact path="/user/:id" component={UserDetail} />
           <Route exact path="/books/:id" component={Detail} />
           <Route component={NoMatch} />
+
         </Switch>
       </div>
     </Router>

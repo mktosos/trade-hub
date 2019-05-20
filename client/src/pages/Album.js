@@ -77,10 +77,10 @@ function Album(props) {
         <div className={styles.heroUnit}>
           <div className={styles.heroContent}>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Trade Hub
+            Trade Hub
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
-              We are a trading platform that hosts groups of traders with common interests by facilitating transactions. The inaugural group trades video games. Create your own trade group amongst friends or amongst the public. 
+              We help groups of people with common interests to securely transact trades amongst users. The inaugural trade group video games. Create your own trade group amongst friends or make it public. 
               
             </Typography>
             <div className={styles.heroButtons}>
@@ -114,7 +114,7 @@ function Album(props) {
                     <Typography gutterBottom variant="h5" component="h2">
                       Heading
                     </Typography>
-                    <img class="materialboxed" width="200" src="https://i.imgur.com/pQ6YhUd.png"/>
+                    <img className="materialboxed" width="200" alt="" src="https://i.imgur.com/pQ6YhUd.png"/>
                     <Typography>
                       This is a media card. You can use this section to describe the content.
                     </Typography>
@@ -147,8 +147,8 @@ function Album(props) {
   );
 }
 
-Album.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// Album.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 export default Album;

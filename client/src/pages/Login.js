@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../components/container/Login.css";
 import API from '../utils/API';
+import AuthService from './../components/AuthService';
+import {Link} from 'react-router-dom';
 // // import { Link } from 'react-router-dom';
 // import RandomHomeComponent from '../components/RandomHomeComponent';
 
@@ -10,6 +12,11 @@ class Login extends Component {
     email: '',
     password: '',
   };
+
+  constructor() {
+    super();
+    this.Auth = new AuthService();
+  }
 
   componentDidMount() {
     const token = localStorage.getItem('current_user_token');

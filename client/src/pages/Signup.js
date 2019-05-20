@@ -12,6 +12,7 @@ class Signup extends Component {
     password: "",
     firstName: "",
     lastName: "",
+    email: "",
     address: {},
     offers: [],
     inTransaction: [],
