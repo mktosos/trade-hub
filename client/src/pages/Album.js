@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+// import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
+// import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,8 +12,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-const image ="https://i.imgur.com/pQ6YhUd.png";
+// import { withStyles } from '@material-ui/core/styles';
+
 
 const styles = theme => ({
   appBar: {
@@ -66,7 +66,7 @@ const styles = theme => ({
 const cards = [1, 2, 3, 4, 5, 6];
 
 function Album(props) {
-  const { classes } = props;
+  // const { classes } = props;
 
   return (
     <React.Fragment>

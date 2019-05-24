@@ -3,13 +3,12 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../components/container/Login.css";
 import API from '../utils/API';
 import AuthService from './../components/AuthService';
-import {Link} from 'react-router-dom';
-// // import { Link } from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 // import RandomHomeComponent from '../components/RandomHomeComponent';
 
 class Login extends Component {
   state = {
-    email: '',
+    userName: '',
     password: '',
   };
 
@@ -41,13 +40,13 @@ class Login extends Component {
       <div className="Login">
       
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" size="large">
-            <FormLabel>Email</FormLabel>
+          <FormGroup controlId="userName" size="large">
+            <FormLabel>User name</FormLabel>
             <FormControl
               autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.onChange('email')}
+              type="string"
+              value={this.state.userName}
+              onChange={this.onChange('userName')}
             />
           </FormGroup>
           <FormGroup controlId="password" size="large">
@@ -60,7 +59,7 @@ class Login extends Component {
           </FormGroup>
           <Button
             onClick={this.onSubmit}
-            disabled={!Boolean(this.state.email && this.state.password)}
+            // disabled={!Boolean(this.state.userName && this.state.password)}
             block
             size="large"
             type="submit"
