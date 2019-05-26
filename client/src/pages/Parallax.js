@@ -1,39 +1,73 @@
 import React from "react";
-import Hello from "./Hello";
+// import Hello from "./Hello";
 import { Parallax } from "react-parallax";
-
-
+import Container from '@material-ui/core/Container';
+import { Button } from "@material-ui/core";
+import AutoGrid from "../components/AutoGrid";
 const styles = {
   fontFamily: "sans-serif",
-  textAlign: "center"
+  textAlign: "center",
 };
-const insideStyles = {
-  background: "white",
+const whiteSpaceStyles = {
+  background: "#eeeeee",
+  height: "1000px",
+  fontFamily: "sans-serif",
+  textAlign: "center",
+};
+const buttonStyles = {
+  minWidth: "200px",
+  background: "darkorange",
+  color: "white",
   padding: 20,
   position: "absolute",
-  top: "50%",
+  top: "45%",
+  left: "50%",
+  transform: "translate(-50%,-10%)"
+};
+const insideStyles = {
+  background: "",
+  color: "white",
+  padding: 20,
+  position: "absolute",
+  top: "45%",
   left: "50%",
   transform: "translate(-50%,-50%)"
 };
-const image1 =
-  "https://images.unsplash.com/photo-1498092651296-641e88c3b057?auto=format&fit=crop&w=1778&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D";
-const image2 =
-  "https://img00.deviantart.net/2bd0/i/2009/276/c/9/magic_forrest_wallpaper_by_goergen.jpg";
 const image3 =
-  "https://brightcove04pmdo-a.akamaihd.net/5104226627001/5104226627001_5297440765001_5280261645001-vs.jpg?pubId=5104226627001&videoId=5280261645001";
+  "https://imgur.com/QDqNBHL.jpg";
+const image2 =
+"https://i.imgur.com/Q8r8SHj.jpg";
+
 const image4 =
-  "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/empire-state-building-black-and-white-square-format-john-farnan.jpg";
+"https://i.imgur.com/vWxQTV0.jpg";
+const image1 =
+  "https://i.imgur.com/Ldkenos.jpg";
 
 function ParallaxPage(){
   return(
     <div style={styles}>
-      <Hello name ="Parallax"/>
-      <Parallax bgImage={image1} strength={500}>
-        <div style={{ height: 500 }}>
-          <div style={insideStyles}>HTML inside the parallax</div>
+      {/* <Hello name ="Trade Hub"/> */}
+      <Parallax bgImage={image1} strength={600}>
+        <div style={{ height: 650 }}>
+          <div style={insideStyles}>
+            <h1><b>THE CART & DISC</b></h1>
+            <br></br>
+            <br></br>
+            <h4>Trade all things video games. A trade pool for physical media - cartridge and disc based games.</h4>
+            <br></br>
+            <Button><div style={buttonStyles}>  TRADE  </div></Button>
+            
+          </div>
         </div>
       </Parallax>
-      <h1>| | |</h1>
+      <div style={whiteSpaceStyles}>
+      <AutoGrid>
+        
+      </AutoGrid>
+      </div>
+      <Container fixed>
+        <h5>lorem ipsum  </h5>
+      </Container>  
       <Parallax bgImage={image3} blur={{ min: -1, max: 3 }}>
         <div style={{ height: 500 }}>
           <div style={insideStyles}>Dynamic Blur</div>

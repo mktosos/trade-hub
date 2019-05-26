@@ -66,7 +66,7 @@ const styles = theme => ({
 const cards = [1, 2, 3, 4, 5, 6];
 
 function Album(props) {
-  // const { classes } = props;
+  //  const { classes } = props;
 
   return (
     <React.Fragment>

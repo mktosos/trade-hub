@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Album from "./pages/Album";
+import Home from "./pages/Home";
 import ParallaxPage from "./pages/Parallax";
 import UserDetail from "./pages/UserDetail";
 
@@ -18,8 +19,9 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Album} />
-          <Route exact path="/parallax" component={ParallaxPage} />
+          <Route exact path="/" component={ParallaxPage} />
+          <Route exact path="/groups" component={Album} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/signup"  component={Signup} />
           <Route exact path="/login"  component={Login} />
           <Route exact path="/user" component={Books} />
