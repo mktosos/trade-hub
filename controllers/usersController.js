@@ -1,14 +1,12 @@
 const db = require("../models");
 const bcrypt = require ("bcrypt");
 const jwt = require ("jsonwebtoken");
-require("dotenv").config();
-const env = require('dotenv').config()
+require('dotenv').config();
 
 // Defining methods for the usersController
 module.exports = {
   findAll: function(req, res) {
     console.log(req.header("Authorization"));
-    
     db.User
       .find(req.query)
       .sort({ date: -1 })

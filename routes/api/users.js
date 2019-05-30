@@ -6,6 +6,9 @@ router.route("/")
   .get(usersController.findAll)
   .post(usersController.create);
 
+router.route("/signup")
+  .post(usersController.create);  
+
 router.route("/login")
   .post(usersController.login);  
 

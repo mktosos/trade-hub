@@ -26,6 +26,7 @@ class Books extends Component {
   };
 
   componentDidMount() {
+    console.log(this.state.items);
     this.loadBooks();
   }
 
@@ -128,6 +129,7 @@ class Books extends Component {
             <Button variant="contained" color="primary">
               Hello World
             </Button>
+            
             {this.state.items.length ? (
               <List>
                 {this.state.items.map(book => (
