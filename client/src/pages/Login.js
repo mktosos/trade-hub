@@ -26,7 +26,7 @@ class Login extends Component {
     event.preventDefault();
     API.login(this.state)
       .then(res => {
-        console.log(res.data);
+        //console.log(res.data);
         localStorage.setItem('current_user_token', res.data.token);
         history.push('/user');
         window.location.reload();
