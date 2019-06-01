@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import AuthService from '../AuthService';
+// import AuthService from '../AuthService';
 
 class Navbar extends Component {
-    constructor() {
-        super();
-        this.Auth = new AuthService();
-    }
+    // constructor() {
+    //     super();
+    //     this.Auth = new AuthService();
+    // }
 
     showNavigation = () => {
-        if (this.Auth.loggedIn()) {
+        const token = window.localStorage.getItem('current_user_token');
+        console.log(token + "from index.js");
+        function logout() {
+            localStorage.clear();
+            window.location.href = '/';
+        }
+        if (token) {
             return (
                 <ul className="navbar-nav">
                     <li className="nav-item">
@@ -17,7 +23,7 @@ class Navbar extends Component {
                     </li>
                     <li className="nav-item">
                         {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-                        <a className="nav-link" href="/" onClick={() => this.Auth.logout()}><h6>logout</h6></a>
+                        <a className="nav-link" href="/" onClick={() => logout()}><h6>logout</h6></a>
                     </li>
                 </ul>
             );

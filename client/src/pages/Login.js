@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../components/container/Login.css";
 import API from '../utils/API';
-import AuthService from './../components/AuthService';
+import { createBrowserHistory } from 'history';
 // import {Link} from 'react-router-dom';
+const history = createBrowserHistory();
+//import AuthService from './../components/AuthService';
+ 
 // import RandomHomeComponent from '../components/RandomHomeComponent';
 
 class Login extends Component {
@@ -12,26 +15,22 @@ class Login extends Component {
     password: '',
   };
 
-  constructor() {
-    super();
-    this.Auth = new AuthService();
-  }
+  // constructor() {
+  //   super();
+  //   this.Auth = new AuthService();
+  // }
 
-  componentDidMount() {
-    console.log("mounted-componentDidMount-Login.js")
-    const token = localStorage.getItem('current_user_token');
+  
 
-    if (token) {
-      API.validateToken(token)
-        .then(() => console.log("token validated"))
-        .catch(() => localStorage.removeItem('current_user_token'));
-    }
-  }
-
-  onSubmit = () => {
+  onSubmit = (event) => {
+    event.preventDefault();
     API.login(this.state)
-      .then (console.log("onSubmit Login.js fired"))
-      //.then(res => localStorage.setItem('current_user_token', res.data.token))
+      .then(res => {
+        console.log(res.data);
+        localStorage.setItem('current_user_token', res.data.token);
+        history.push('/user');
+        window.location.reload();
+      })
       .catch(err => console.log(err));
   };
 
@@ -41,9 +40,9 @@ class Login extends Component {
     return (
       <div className="Login">
       
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.onSubmit}>
           <FormGroup controlId="userName" size="large">
-            <FormLabel>User name?</FormLabel>
+            <FormLabel>User name</FormLabel>
             <FormControl
               autoFocus
               type="string"
@@ -60,7 +59,7 @@ class Login extends Component {
             />
           </FormGroup>
           <Button
-            onClick={this.onSubmit}
+            //onClick={this.onSubmit}
             disabled={!Boolean(this.state.userName && this.state.password)}
             block
             size="large"

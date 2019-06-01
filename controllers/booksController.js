@@ -9,9 +9,9 @@ module.exports = {
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-      console.log(decoded);
-      console.log(decoded.id);
-      console.log(decoded.userName);
+      // console.log(decoded);
+      // console.log(decoded.id);
+      // console.log(decoded.userName);
   },
   findById: function(req, res) {
     db.Book

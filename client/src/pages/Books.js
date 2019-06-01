@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import Button from '@material-ui/core/Button';
 
 class Books extends Component {
   state = {
@@ -26,7 +25,7 @@ class Books extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.items);
+
     this.loadBooks();
   }
 
@@ -63,7 +62,9 @@ class Books extends Component {
         seller: this.state.seller,
         buyer: this.state.buyer,
         description: this.state.description
-      })
+      },
+      
+      )
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
     }
@@ -126,24 +127,20 @@ class Books extends Component {
             <Jumbotron>
               <h1>Items In Inventory</h1>
             </Jumbotron>
-            <Button variant="contained" color="primary">
-              Hello World
-            </Button>
-            
-            {this.state.items.length ? (
-              <List>
-                {this.state.items.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} ${book.price} {book.condition} {book.category} {book.subcategory}
-                      </strong>
-                      <pre>{JSON.stringify(book, null, 2)}</pre>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
+              {this.state.items.length ? (
+                <List>
+                  {this.state.items.map(book => (
+                    <ListItem key={book._id}>
+                      <Link to={"/books/" + book._id}>
+                        <strong>
+                          {book.title} ${book.price} {book.condition} {book.category} {book.subcategory}
+                        </strong>
+                        <pre>{JSON.stringify(book, null, 2)}</pre>
+                      </Link>
+                      <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    </ListItem>
+                  ))}
+                </List>
             ) : (
               <h3>No Results to Display</h3>
             )}

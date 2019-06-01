@@ -14,29 +14,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));  
 }
 
-// Add authorization
-app.use(function(req, res, next) {
-    const token =req.header("Authorization");
-    let bearer = "";
-    if (token) {
-      bearer=token.replace("bearer ","");
-    }else{
-      return (res.status(403).json({
-        error: "authorization required"
-      }))
-    }
-    jwt.verify(bearer,process.env.SECRET_KEY, function(err, decoded){
-      if(err){
-        return (res.status(404).json({
-          error: "authorization required"
-        }))
-      }
-      console.log(decoded);
-      console.log(decoded.id);
-      console.log(decoded.userName);
-      req.user = decoded;
-    })
-});
+
 
 // Add routes, both API and view
 app.use(routes);

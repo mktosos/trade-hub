@@ -4,6 +4,7 @@ import { Parallax } from "react-parallax";
 //import Container from '@material-ui/core/Container';
 import { Button } from "@material-ui/core";
 import AutoGrid from "../components/AutoGrid";
+import { Link } from 'react-router-dom';
 //import { responsiveFontSizes } from "@material-ui/core/styles";
 
 const styles = {
@@ -29,6 +30,15 @@ const buttonStyles = {
   padding: 20,
   position: "absolute",
   top: "45%",
+  left: "50%",
+  transform: "translate(-50%,-10%)"
+};
+const buttonStylesText = {
+  minWidth: "200px",
+  color: "white",
+  padding: 20,
+  position: "absolute",
+  top: "10%",
   left: "50%",
   transform: "translate(-50%,-10%)"
 };
@@ -66,7 +76,8 @@ function ParallaxPage(){
             <br/>
             <h4>a transaction platform for collectors, traders, buyers and sellers. </h4>
             <br></br>
-            <Button><div style={buttonStyles}>  Start Trading  </div></Button>
+            <Button><div style={buttonStyles}><Link className="nav-link" to="/signup"><h6 style={buttonStylesText}>Start Trading</h6></Link></div></Button>
+            
           </div>
         </div>
       </Parallax>

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
+
 
 class Signup extends Component {
   state = {
@@ -89,6 +90,12 @@ class Signup extends Component {
                 onClick={this.handleFormSubmit}
               >
                 Sign Up
+              </FormBtn>
+              <br/><br/><br/>
+              <FormBtn>
+                <Link to="/login" style={{ color: '#FFF' }} >
+                  <div color="#ff5c5c">Log in</div>
+                </Link>
               </FormBtn>
             </form>
           </Col>
