@@ -21,6 +21,7 @@ module.exports = function(req, res, next) {
       console.log(decoded.userName);
       req.user = decoded;
       console.log(req.user);
+      
       next()
     })
 }

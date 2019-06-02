@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import decode from 'jwt-decode';
+import UserFromToken from "../components/UserFromToken";
+
 
 class Books extends Component {
   state = {
@@ -15,19 +18,25 @@ class Books extends Component {
     subcategory: "",
     price: "",
     condition: "",
-    seller: "",
     buyer: "",
     description: "",
     active: "",
     date: "",
     upc: "",
-    initTransaction: ""
+    initTransaction: "",
+    token: "",
+    seller: "",
+    
   };
 
   componentDidMount() {
-
     this.loadBooks();
+    const token = localStorage.getItem('current_user_token');
+    localStorage.setItem('token', token);
+    // console.log(token + "      pages/Books.js");
+    
   }
+
 
   loadBooks = () => {
     API.getBooks()
@@ -59,9 +68,9 @@ class Books extends Component {
         subcategory: this.state.subcategory,
         price: this.state.price,
         condition: this.state.condition,
-        seller: this.state.seller,
         buyer: this.state.buyer,
-        description: this.state.description
+        description: this.state.description,
+        seller: this.state.seller
       },
       
       )
@@ -69,14 +78,15 @@ class Books extends Component {
         .catch(err => console.log(err));
     }
   };
-
+  
   render() {
     return (
       <Container fluid>
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Add To Inventory</h1>
+              <h1>Add To Inventory </h1>
+              <UserFromToken/>
             </Jumbotron>
             <form>
               <Input
@@ -135,7 +145,7 @@ class Books extends Component {
                         <strong>
                           {book.title} ${book.price} {book.condition} {book.category} {book.subcategory}
                         </strong>
-                        <pre>{JSON.stringify(book, null, 2)}</pre>
+                        {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
                       </Link>
                       <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                     </ListItem>

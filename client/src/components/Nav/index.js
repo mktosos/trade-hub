@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 // import AuthService from '../AuthService';
+import decode from 'jwt-decode';
+import UserFromToken from "../UserFromToken";
 
 class Navbar extends Component {
     // constructor() {
     //     super();
     //     this.Auth = new AuthService();
     // }
-
+    
     showNavigation = () => {
-        const token = window.localStorage.getItem('current_user_token');
-        console.log(token + "from index.js");
+    const token = window.localStorage.getItem('current_user_token');
+    //     // const showUser = decode(window.localStorage.getItem('current_user_token'));   
+    //     console.log(token + "from nav/index.js");
+    //     console.log(JSON.stringify(showUser.userName)  + "    =  JSON.stringify(showUser.userName) from Nav/index.js showNavigation");
+        
+
+        
         function logout() {
             localStorage.clear();
             window.location.href = '/';
@@ -18,6 +25,9 @@ class Navbar extends Component {
         if (token) {
             return (
                 <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <UserFromToken/>
+                    </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/user"><h6>PROFILE</h6></Link>
                     </li>
@@ -46,6 +56,7 @@ class Navbar extends Component {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
                     <Link className="navbar-brand" to="/"><h4>Trade Hub</h4></Link>
+                    
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
