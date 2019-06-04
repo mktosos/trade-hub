@@ -10,6 +10,8 @@ import decode from 'jwt-decode';
 import UserFromToken from "../components/UserFromToken";
 
 
+
+
 class Books extends Component {
   state = {
     items: [],
@@ -32,12 +34,14 @@ class Books extends Component {
   componentDidMount() {
     this.loadBooks();
     const token = localStorage.getItem('current_user_token');
-    localStorage.setItem('token', token);
-    // console.log(token + "      pages/Books.js");
-    
+    const loggedUser = decode(token).userName;
+    const loggedUserId = decode(token).id;
+    localStorage.setItem('loggedUserId', loggedUserId);
+    // console.log(token + loggedUser + "      pages/Books.js");
+    console.log(loggedUserId + "      pages/Books.js"); 
+    console.log(loggedUser + "      pages/Books.js");
   }
-
-
+  
   loadBooks = () => {
     API.getBooks()
       .then(res =>
@@ -70,10 +74,9 @@ class Books extends Component {
         condition: this.state.condition,
         buyer: this.state.buyer,
         description: this.state.description,
-        seller: this.state.seller
-      },
+        seller: localStorage.loggedUserId
       
-      )
+      })
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
     }

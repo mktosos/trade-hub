@@ -8,10 +8,17 @@ router.route("/")
   .post(isAuthenticated, booksController.create);
 
 // Matches with "/api/books/:id"
+// router
+//   .route("/:id")
+//   .get(isAuthenticated, booksController.findById)
+//   .put(isAuthenticated, booksController.update)
+//   .delete(isAuthenticated, booksController.remove);
+
 router
   .route("/:id")
   .get(isAuthenticated, booksController.findById)
   .put(isAuthenticated, booksController.update)
   .delete(isAuthenticated, booksController.remove);
+  
 
 module.exports = router;

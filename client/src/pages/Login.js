@@ -3,11 +3,17 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../components/container/Login.css";
 import API from '../utils/API';
 import { createBrowserHistory } from 'history';
-// import {Link} from 'react-router-dom';
+
 const history = createBrowserHistory();
-//import AuthService from './../components/AuthService';
- 
-// import RandomHomeComponent from '../components/RandomHomeComponent';
+
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = decodeURIComponent(atob(base64Url).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(base64);
+};
 
 class Login extends Component {
   state = {
@@ -15,21 +21,16 @@ class Login extends Component {
     password: '',
   };
 
-  // constructor() {
-  //   super();
-  //   this.Auth = new AuthService();
-  // }
-
-  
-
   onSubmit = (event) => {
     event.preventDefault();
     API.login(this.state)
       .then(res => {
-        //console.log(res.data);
         localStorage.setItem('current_user_token', res.data.token);
+        localStorage.setItem('token', parseJwt(res.data.token));
+        console.log(parseJwt(res.data.token));
         history.push('/user');
         window.location.reload();
+        console.log(parseJwt(res.data.token));
       })
       .catch(err => console.log(err));
   };

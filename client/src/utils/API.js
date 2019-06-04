@@ -9,6 +9,10 @@ export default {
   getBook: function(id) {
     return axios.get("/api/books/" + id);
   },
+  // Gets books with the given user's id
+  getUserBooks: function(id){
+    return axios.get("/api/books/" + id);
+  },
   // Deletes the book with the given id
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);

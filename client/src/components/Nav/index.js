@@ -1,24 +1,12 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-// import AuthService from '../AuthService';
-import decode from 'jwt-decode';
 import UserFromToken from "../UserFromToken";
 
 class Navbar extends Component {
-    // constructor() {
-    //     super();
-    //     this.Auth = new AuthService();
-    // }
     
     showNavigation = () => {
     const token = window.localStorage.getItem('current_user_token');
-    //     // const showUser = decode(window.localStorage.getItem('current_user_token'));   
-    //     console.log(token + "from nav/index.js");
-    //     console.log(JSON.stringify(showUser.userName)  + "    =  JSON.stringify(showUser.userName) from Nav/index.js showNavigation");
-        
-
-        
-        function logout() {
+         function logout() {
             localStorage.clear();
             window.location.href = '/';
         }
