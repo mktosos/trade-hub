@@ -32,18 +32,26 @@ class Books extends Component {
   };
 
   componentDidMount() {
-    this.loadBooks();
-    const token = localStorage.getItem('current_user_token');
-    const loggedUser = decode(token).userName;
-    const loggedUserId = decode(token).id;
-    localStorage.setItem('loggedUserId', loggedUserId);
-    // console.log(token + loggedUser + "      pages/Books.js");
-    console.log(loggedUserId + "      pages/Books.js"); 
-    console.log(loggedUser + "      pages/Books.js");
+   
+    try{
+      const token = localStorage.getItem('current_user_token');
+      const loggedUser = decode(token).userName;
+      const loggedUserId = decode(token).id;
+      localStorage.setItem('loggedUserId', loggedUserId);
+      // console.log(token + loggedUser + "      pages/Books.js");
+      console.log(loggedUserId + "      pages/Books.js"); 
+      console.log(loggedUser + "      pages/Books.js");
+      console.log(this.state);
+      this.loadBooks(loggedUserId);
+    }catch (error) {
+      // ...
+    }
+   
   }
   
-  loadBooks = () => {
-    API.getBooks()
+  loadBooks = (loggedUserId) => {
+    console.log(decode(localStorage.getItem('current_user_token')).id + " from inside loadBooks")
+    API.getUserBooks(loggedUserId)
       .then(res =>
         this.setState({ items: res.data, title: "", category: "", subcategory: "", price: "", condition: "", seller: "", buyer: "", description: ""})
       )

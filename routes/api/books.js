@@ -16,7 +16,8 @@ router.route("/")
 
 router
   .route("/:id")
-  .get(isAuthenticated, booksController.findById)
+  .get(isAuthenticated, booksController.findBySeller)
+  // .get(isAuthenticated, booksController.findById)
   .put(isAuthenticated, booksController.update)
   .delete(isAuthenticated, booksController.remove);
   

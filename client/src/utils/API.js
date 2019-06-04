@@ -9,6 +9,9 @@ export default {
   getBook: function(id) {
     return axios.get("/api/books/" + id);
   },
+  getBookBySeller: function(id) {
+    return axios.get("/api/users/books/" + id);
+  },
   // Gets books with the given user's id
   getUserBooks: function(id){
     return axios.get("/api/books/" + id);

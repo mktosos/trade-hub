@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken")
 
 // Defining methods for the booksController
 module.exports = {
+
   // findAll: function(req, res) {
-   
   //   db.Book
   //     .find(req.query)
   //     .sort({ date: -1 })
@@ -20,8 +20,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  
-
+  findBySeller: function(req, res) {
+    db.Book
+      .find({seller: req.params.id})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findById: function(req, res) {
     db.Book
       .findById(req.params.id)
