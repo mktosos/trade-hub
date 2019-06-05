@@ -1,5 +1,4 @@
 import React from "react";
-// import Hello from "./Hello";
 import { Parallax } from "react-parallax";
 //import Container from '@material-ui/core/Container';
 import { Button } from "@material-ui/core";
@@ -66,7 +65,6 @@ const image1 =
 function ParallaxPage(){
   return(
     <div style={styles}>
-      {/* <Hello name ="Trade Hub"/> */}
       <Parallax bgImage={image1} strength={600}>
         <div style={{ height: 650 }}>
           <div style={insideStyles}>

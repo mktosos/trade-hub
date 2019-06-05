@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Album from "./pages/Album";
 import ParallaxPage from "./pages/Parallax";
 import UserDetail from "./pages/UserDetail";
+import Paperbase from "./pages/Paperbase";
 
 
 
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/user" component={Books} />
           <Route exact path="/user/:id" component={UserDetail} />
           <Route exact path="/books/:id" component={Detail} />
+          <Route exact path="/userpage" component={Paperbase} />
           <Route component={NoMatch} />
 
         </Switch>

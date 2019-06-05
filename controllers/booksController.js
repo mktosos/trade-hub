@@ -15,7 +15,7 @@ module.exports = {
   // ***** pulls hardcoded users books
   findAll: function(req, res) {
     db.Book
-      .find( { seller: "5cef37e16808460829ee4a01"})
+      .find({})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

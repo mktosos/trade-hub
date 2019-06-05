@@ -9,9 +9,9 @@ function UserFromToken() {
         const loggedUserId = decode(token).id;
         // console.log(token + "    from UserFromToken.js");
         // console.log(loggedUser + "    from UserFromToken.js");
-        // console.log(decode(token).id + "    from UserFromToken.js");
+         //console.log(loggedUserId + "    from UserFromToken.js");
         return(
-            <div> Hi { loggedUser } </div>
+            <div>{ loggedUser } </div>
         )
     }
     catch (err) {

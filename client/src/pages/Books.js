@@ -8,7 +8,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import decode from 'jwt-decode';
 import UserFromToken from "../components/UserFromToken";
-
+import SearchForItems from "../components/SearchForItems";
 
 
 
@@ -38,10 +38,8 @@ class Books extends Component {
       const loggedUser = decode(token).userName;
       const loggedUserId = decode(token).id;
       localStorage.setItem('loggedUserId', loggedUserId);
-      // console.log(token + loggedUser + "      pages/Books.js");
-      console.log(loggedUserId + "      pages/Books.js"); 
-      console.log(loggedUser + "      pages/Books.js");
-      console.log(this.state);
+      // console.log(loggedUserId + "      pages/Books.js"); 
+      // console.log(loggedUser + "      pages/Books.js");
       this.loadBooks(loggedUserId);
     }catch (error) {
       // ...
@@ -50,7 +48,7 @@ class Books extends Component {
   }
   
   loadBooks = (loggedUserId) => {
-    console.log(decode(localStorage.getItem('current_user_token')).id + " from inside loadBooks")
+    // console.log(decode(localStorage.getItem('current_user_token')).id + " from inside loadBooks")
     API.getUserBooks(loggedUserId)
       .then(res =>
         this.setState({ items: res.data, title: "", category: "", subcategory: "", price: "", condition: "", seller: "", buyer: "", description: ""})
@@ -60,7 +58,7 @@ class Books extends Component {
 
   deleteBook = id => {
     API.deleteBook(id)
-      .then(res => this.loadBooks())
+      .then(res => this.loadBooks(decode(localStorage.getItem('current_user_token')).id))
       .catch(err => console.log(err));
   };
 
@@ -83,9 +81,9 @@ class Books extends Component {
         buyer: this.state.buyer,
         description: this.state.description,
         seller: localStorage.loggedUserId
-      
       })
         .then(res => this.loadBooks())
+        .then (window.location.reload())
         .catch(err => console.log(err));
     }
   };
@@ -94,10 +92,38 @@ class Books extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          
+          <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Add To Inventory </h1>
-              <UserFromToken/>
+              <h4>Your inventory <span><UserFromToken/></span></h4>
+            </Jumbotron>
+              {this.state.items.length ? (
+                <List>
+                  {this.state.items.map(book => (
+                    <ListItem key={book._id}>
+                      <Link to={"/books/" + book._id}>
+                        <strong>
+                          {book.title} ${book.price} {book.condition} {book.category} {book.subcategory}
+                        </strong>
+                        {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
+                      </Link>
+                      <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </Col>
+         
+          <Col size="md-6 sm-12">
+            <SearchForItems/>    
+          </Col>
+        </Row>
+        <Row>
+        <Col size="md-6">
+            <Jumbotron>
+              <h4>List an item </h4>
             </Jumbotron>
             <form>
               <Input
@@ -144,29 +170,8 @@ class Books extends Component {
               </FormBtn>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Items In Inventory</h1>
-            </Jumbotron>
-              {this.state.items.length ? (
-                <List>
-                  {this.state.items.map(book => (
-                    <ListItem key={book._id}>
-                      <Link to={"/books/" + book._id}>
-                        <strong>
-                          {book.title} ${book.price} {book.condition} {book.category} {book.subcategory}
-                        </strong>
-                        {/* <pre>{JSON.stringify(book, null, 2)}</pre> */}
-                      </Link>
-                      <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                    </ListItem>
-                  ))}
-                </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
         </Row>
+        
       </Container>
     );
   }

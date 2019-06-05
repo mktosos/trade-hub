@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { FormBtn } from "../components/Form";
 
 class Detail extends Component {
   state = {
@@ -11,11 +12,12 @@ class Detail extends Component {
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   componentDidMount() {
-    console.log(this.props.match.params.id)
+    
+    console.log("loggedUserId   " + localStorage.loggedUserId)
     API.getBookBySeller(this.props.match.params.id)
       .then(res => this.setState({ book: res.data }))
       .catch(err => console.log(err));
-      console.log(this.state);  
+    console.log(this.props.match.params.id)  
   }
 
   render() {
@@ -25,7 +27,7 @@ class Detail extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                {this.state.book.title} ${this.state.book.price} {this.state.book.category} {this.state.book.subcategory} {this.state.book.condition}
+              {this.state.book.seller} ${this.state.book.price} {this.state.book.category} {this.state.book.subcategory} {this.state.book.condition}
               </h1>
             </Jumbotron>
           </Col>
@@ -37,6 +39,16 @@ class Detail extends Component {
               <p>
                 {this.state.book.description}
               </p>
+              {!(localStorage.loggedUserId === this.state.book.seller)?(
+                // {!("hi" == "hi")?(
+              <FormBtn
+                disable={(this.state.seller === this.props.match.params.id)}
+                onClick={this.handleFormSubmit}
+              >
+                BUY
+              </FormBtn>
+              ):null}
+              
             </article>
           </Col>
         </Row>
