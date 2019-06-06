@@ -50,5 +50,11 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  buy: function(req, res) {
+    db.Book
+      .findOneAndUpdate({ _id: req.params.id }, {buyer: loggedUserId})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

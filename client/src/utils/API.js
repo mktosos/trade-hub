@@ -5,10 +5,15 @@ export default {
   getBooks: function() {
     return axios.get("/api/books");
   },
+  // Gets books except sellers
+  getBookSansSeller: function(id) {
+    return axios.get("/api/users/books/" + id);
+  },
   // Gets the book with the given id
   getBook: function(id) {
     return axios.get("/api/books/" + id);
   },
+  //Gets the book with the given id
   getBookBySeller: function(id) {
     return axios.get("/api/users/books/" + id);
   },
@@ -40,8 +45,22 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/users", userData);
   },
+  
   login: function(userData) {
     return axios.post("/api/users/login", userData);
+  },
+  // adds a buyer: _id to the books seller field,  sets inTransaction to true
+  buyBook: function(bookId) {
+    //return axios.put("/api/buy/" + id, userData;
+    console.log(bookId + "  buyBookId")
+    console.log("loggedUserId   " + localStorage.loggedUserId) 
+    return axios.put("/api/buy/" + bookId, {
+      buyer: localStorage.loggedUserId,
+      
+      initTransaction: true
+      
+    })
+    
   }
   
 };

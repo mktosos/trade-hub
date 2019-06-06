@@ -16,12 +16,10 @@ module.exports = function(req, res, next) {
           error: "authorization required"
         }))
       }
-      
-      console.log(decoded.id);
-      console.log(decoded.userName);
+      // console.log(decoded.id);
+      // console.log(decoded.userName);
       req.user = decoded;
-      console.log(req.user);
-      
+      // console.log(req.user);
       next()
     })
 }

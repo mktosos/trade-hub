@@ -1,10 +1,10 @@
     import React, { Component } from "react";
-    import DeleteBtn from "../components/DeleteBtn";
-    import Jumbotron from "../components/Jumbotron";
+    import DeleteBtn from "./DeleteBtn";
+    import Jumbotron from "./Jumbotron";
     import API from "../utils/API";
     import { Link } from "react-router-dom";
-    import { Col, Row, Container } from "../components/Grid";
-    import { List, ListItem } from "../components/List";
+    import { Col, Row, Container } from "./Grid";
+    import { List, ListItem } from "./List";
     
     class SearchForItems extends Component {
       state = {
@@ -24,13 +24,10 @@
         seller: "",
         
       };
-    
       componentDidMount() {
           this.loadBooks()
        }
-      
       loadBooks = () => {
-        // console.log(decode(localStorage.getItem('current_user_token')).id + " from inside loadBooks")
         API.getBooks()
           .then(res =>
             this.setState({ items: res.data, title: "", category: "", subcategory: "", price: "", condition: "", seller: "", buyer: "", description: ""})
@@ -43,7 +40,7 @@
             <Row>
               <Col size="md-12 sm-12">
                 <Jumbotron>
-                  <h4>All Items Listed</h4>
+                  <h4>Transactions in Progress</h4>
                 </Jumbotron>
                   {this.state.items.length ? (
                     <List>

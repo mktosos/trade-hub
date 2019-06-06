@@ -9,6 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import decode from 'jwt-decode';
 import UserFromToken from "../components/UserFromToken";
 import SearchForItems from "../components/SearchForItems";
+import ItemsinTransaction from "../components/ItemsInTransaction";
 
 
 
@@ -169,6 +170,9 @@ class Books extends Component {
                 Add Item
               </FormBtn>
             </form>
+          </Col>
+          <Col size="md-6 sm-12">
+            <ItemsinTransaction/>    
           </Col>
         </Row>
         
