@@ -43,9 +43,9 @@ class Detail extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h1>
-              seller = {this.state.book.seller} {this.state.book.title}${this.state.book.price} {this.state.book.category} {this.state.book.subcategory} {this.state.book.condition}
-              </h1>
+              <h3>
+              {this.state.book.title} for {this.state.book.subcategory} in {this.state.book.condition} condition $ {this.state.book.price}
+              </h3>
               {/* <pre>{JSON.stringify(this.state.book, null, 2)}</pre> */}
             </Jumbotron>
           </Col>
