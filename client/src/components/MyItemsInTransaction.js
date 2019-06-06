@@ -5,8 +5,8 @@
     import { Link } from "react-router-dom";
     import { Col, Row, Container } from "./Grid";
     import { List, ListItem } from "./List";
-    
-    class SearchForItems extends Component {
+    import decode from 'jwt-decode';
+    class MyItemsInTransaction extends Component {
       state = {
         items: [],
         title: "",
@@ -28,7 +28,8 @@
           this.loadBooks()
        }
       loadBooks = () => {
-        API.getInTransactionBooks()
+        console.log(decode(localStorage.getItem('current_user_token')).id)
+        API.getMyInTransactionBooks(decode(localStorage.getItem('current_user_token')).id)
           .then(res =>
             this.setState({ items: res.data, title: "", category: "", subcategory: "", price: "", condition: "", seller: "", buyer: "", description: ""})
           )
@@ -40,7 +41,7 @@
             <Row>
               <Col size="md-12 sm-12">
                 <Jumbotron>
-                  <h4>All Transactions in Progress</h4>
+                  <h4>My Transactions in Progress</h4>
                 </Jumbotron>
                   {this.state.items.length ? (
                     <List>
@@ -70,5 +71,5 @@
       }
     }
     
-    export default SearchForItems;
+    export default MyItemsInTransaction;
         

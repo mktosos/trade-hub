@@ -56,11 +56,16 @@ export default {
     console.log("loggedUserId   " + localStorage.loggedUserId) 
     return axios.put("/api/buy/" + bookId, {
       buyer: localStorage.loggedUserId,
-      
       initTransaction: true
-      
     })
-    
+  },
+  // Gets the books with initTransactiion : true
+  getInTransactionBooks: function() {
+    return axios.get("/api/buy/");
+  },
+  // Gets the books with initTransactiion : true
+  getMyInTransactionBooks: function(id) {
+    return axios.get("/api/buy/userinprogress" + id);
   }
   
 };

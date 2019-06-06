@@ -10,6 +10,7 @@ import decode from 'jwt-decode';
 import UserFromToken from "../components/UserFromToken";
 import SearchForItems from "../components/SearchForItems";
 import ItemsinTransaction from "../components/ItemsInTransaction";
+import MyItemsInTransaction from "../components/MyItemsInTransaction";
 
 
 
@@ -173,6 +174,11 @@ class Books extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <ItemsinTransaction/>    
+          </Col>
+        </Row>
+        <Row>
+        <Col size="md-6 sm-12">
+            <MyItemsInTransaction/>   
           </Col>
         </Row>
         

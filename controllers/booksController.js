@@ -13,13 +13,7 @@ module.exports = {
   // },
 
   // ***** pulls hardcoded users books
-  findAll: function(req, res) {
-    db.Book
-      .find({})
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
+  
   findBySeller: function(req, res) {
     db.Book
       .find({seller: req.params.id})
@@ -56,5 +50,26 @@ module.exports = {
       .findOneAndUpdate({ _id: req.params.id }, {buyer: loggedUserId})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findAll: function(req, res) {
+    db.Book
+      .find({})
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findInTransaction: function(req, res) {
+    db.Book
+    .find({"initTransaction":true})
+    .sort({ date: -1 })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
+  findMyInTransaction: function(req, res) {
+    db.Book
+    .find({"initTransaction":true})
+    .sort({ date: -1 })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
   }
 };
