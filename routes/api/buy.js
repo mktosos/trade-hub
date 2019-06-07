@@ -8,8 +8,8 @@ router.route("/")
   .post(usersController.create);
 
 // Matches with "/api/buy"
-router.route("/userinprogress")
-  .get(booksController.findInTransaction)
+router.route("/userinprogress/:id")
+  .get(booksController.findMyInTransaction)
   .post(usersController.create);  
  
 // Matches with "/api/buy/:id"

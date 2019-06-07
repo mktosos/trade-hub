@@ -7,6 +7,7 @@ function UserFromToken() {
         const loggedUser = decode(token).userName;
         // eslint-disable-next-line
         const loggedUserId = decode(token).id;
+        // decode(localStorage.getItem('current_user_token')).id
         // console.log(token + "    from UserFromToken.js");
         // console.log(loggedUser + "    from UserFromToken.js");
          //console.log(loggedUserId + "    from UserFromToken.js");
