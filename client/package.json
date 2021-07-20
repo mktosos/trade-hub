@@ -12,7 +12,7 @@
     "react-bootstrap": "^1.0.0-beta.8",
     "react-compose": "^2.0.0",
     "react-dom": "^16.8.6",
-    "react-native": "^0.59.8",
+    "react-native": "^0.62.3",
     "react-parallax": "^2.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.0.0"
